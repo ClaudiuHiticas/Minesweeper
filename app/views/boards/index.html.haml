@@ -1,17 +1,30 @@
-%table.table
-  %thead.thead-dark
-    %th{:scope => "col"}= "Name"
-    %th{:scope => "col"}= "Email"
-    %th{:scope => "col"}= "Width"
-    %th{:scope => "col"}= "Height"
-    %th{:scope => "col"}= "Mines"
-    %th{:scope => "col"}= "Created at"
-  %tbody
-  - @boards.each do |board|
-    %tr
-      %td= link_to board.name, board
-      %td= board.email
-      %td= board.width
-      %td= board.height
-      %td= board.no_mines
-      %td= board.created_at.to_time.strftime('%B %e at %l:%M %p')
+%div.mt-10.ml-10
+  =link_to 'Back', root_path
+.container.mt-8.px-5
+  %table.table
+    %thead.thead-dark
+      %th{:scope => "col"}= "Name"
+      %th{:scope => "col"}= "Email"
+      %th{:scope => "col"}= "Width"
+      %th{:scope => "col"}= "Height"
+      %th{:scope => "col"}= "Mines"
+      %th{:scope => "col"}= "Created at"
+      %th{:scope => "col"}= "Delete Board"
+    - @boards.each do |board|
+      %tbody{:id => "board-#{board.id}"}
+        %tr
+          %td= link_to board.name, board
+          %td= board.email
+          %td= board.width
+          %td= board.height
+          %td= board.no_mines
+          %td= board.created_at.to_time.strftime('%B %e at %l:%M %p')
+          %td.text-center
+            =link_to 'Delete', board_path(board), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+  - if @boards.length > 10
+    .text-center
+      - if params[:all].present? && params[:all] == "true"
+        = link_to 'View last 10 generated boards', boards_path(:all => false), :class => 'btn btn-primary'
+      - else
+        = link_to 'View all generated boards', boards_path(:all => true), :class => 'btn btn-primary'

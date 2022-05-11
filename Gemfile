@@ -30,6 +30,8 @@ gem 'haml-rails'
 # Bootstrap
 gem 'bootstrap'
 gem 'jquery-rails'
+#pry
+gem 'pry', '~> 0.13.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

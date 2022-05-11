@@ -1,6 +1,10 @@
 class BoardsController < ApplicationController
   def index
-    @boards = Board.all
+    if params[:all].present? && params[:all] == "true"
+      @boards = Board.all
+    else
+      @boards = Board.last(10).reverse
+    end
   end
 
   def show
@@ -9,11 +13,16 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    if @board.save
-      redirect_to boards_path(@board)
+    if @board.generate
+      redirect_to boards_path
     else
       render 'static_pages/home'
     end
+  end
+
+  def destroy
+    @board = Board.find(params[:id])
+    @board.destroy
   end
 
   private

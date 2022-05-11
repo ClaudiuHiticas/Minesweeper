@@ -1,17 +1,14 @@
-%div
-  %h1
-    Welcome to Minesweeper
-  .flex.flex-col.align-content-center
-    = form_for :board, url: '/boards', method: :post do |f|
-      %div
-        = f.email_field :email, placeholder: 'Email'
-      %div
-        = f.number_field :width, placeholder: 'Width'
-      %div
-        = f.number_field :height, placeholder: 'Height'
-      %div
-        = f.number_field :no_mines, placeholder: 'Number of Mines'
-      %div
-        = f.text_field :name, placeholder: 'Board Name'
-      %div
-        = f.submit 'Create Board', class: 'btn btn-primary'
+.container.mt-28.px-5.flex
+  %div.m-auto.mx-auto
+    %h1
+      Welcome to Minesweeper
+    .mx-auto
+      = form_for :board, url: boards_path, method: :post do |f|
+        .flex.flex-column.gap-4.mt-5
+          = f.email_field :email, placeholder: 'Email', class: 'rounded-lg'
+          = f.number_field :width, placeholder: 'Width', class: 'rounded-lg'
+          = f.number_field :height, placeholder: 'Height', class: 'rounded-lg'
+          = f.number_field :no_mines, placeholder: 'Number of Mines', class: 'rounded-lg'
+          = f.text_field :name, placeholder: 'Board Name', class: 'rounded-lg'
+          = f.submit 'Generate Board', class: 'submit-btn w-2/3 mx-auto btn btn-primary rounded-lg'
+    = link_to "See generated boards", boards_path

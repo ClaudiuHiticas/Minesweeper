@@ -1,5 +1,17 @@
-%div
+%div.mt-10.ml-10
+  =link_to 'Back', boards_path
+%div.mt-10.flex.flex-col.items-center
   %h1
     Name: #{@board.name}
   %h2
     Email: #{@board.email}
+
+  %h1.mt-10
+    - matrix = @board.to_matrix
+    - (0..@board.width-1).each do |row|
+      - (0..@board.height-1).each do |col|
+        - if matrix[row][col] == nil
+          = "🌫"
+        - else
+          = "💣"
+      %br

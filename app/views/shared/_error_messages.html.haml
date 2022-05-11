@@ -3,5 +3,11 @@
     .alert.alert-danger
       The form contains #{pluralize(object.errors.count, "error")}.
     %ul
-      - object.errors.full_messages.each do |msg|
-        %li= msg
+      - object.errors.full_messages.each do |message|
+        .text-base.font-normal.pt-2.pb-6.absolute.left-0.right-0.top-4
+          .bg-red-500.p-3.rounded.flex.items-start.text-white.my-4.shadow-lg.mx-auto.max-w-lg.text-left.alert
+            .text-lg.my-auto
+              %i.fas.fa-exclamation-circle
+            .px-3.my-auto.flex-grow= content_tag(:div, message)
+            .text-lg.my-auto.transform.transition.cursor-pointer.hover:scale-110.duration-300.ease-in-out.close
+              %i.fas.fa-times
