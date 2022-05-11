@@ -22,8 +22,8 @@
           %td.text-center
             =link_to 'Delete', board_path(board), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
-  - if @boards.length > 10
-    .text-center
+  - if Board.all.length > 10
+    .text-center.mb-20
       - if params[:all].present? && params[:all] == "true"
         = link_to 'View last 10 generated boards', boards_path(:all => false), :class => 'btn btn-primary'
       - else
