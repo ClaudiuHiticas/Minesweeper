@@ -1,3 +1,17 @@
 %div
   %h1
     Welcome to Minesweeper
+  .flex.flex-col.align-content-center
+    = form_for :board, url: '/boards', method: :post do |f|
+      %div
+        = f.email_field :email, placeholder: 'Email'
+      %div
+        = f.number_field :width, placeholder: 'Width'
+      %div
+        = f.number_field :height, placeholder: 'Height'
+      %div
+        = f.number_field :no_mines, placeholder: 'Number of Mines'
+      %div
+        = f.text_field :name, placeholder: 'Board Name'
+      %div
+        = f.submit 'Create Board', class: 'btn btn-primary'
