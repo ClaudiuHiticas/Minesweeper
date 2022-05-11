@@ -6,7 +6,7 @@ class Board < ApplicationRecord
   validates :height, presence: true, :numericality => { greater_than_or_equal_to: 0 }
   validates :width, presence: true, :numericality => { greater_than_or_equal_to: 0 }
   validates :no_mines, presence: true, :numericality => { greater_than_or_equal_to: 0 }
-  validates_numericality_of :no_mines, :less_than => Proc.new { |minesweeper_board| minesweeper_board.width * minesweeper_board.height }
+  validates_numericality_of :no_mines, :less_than => Proc.new { |minesweeper_board| minesweeper_board.width * minesweeper_board.height + 1 }
 
 
   def to_matrix
