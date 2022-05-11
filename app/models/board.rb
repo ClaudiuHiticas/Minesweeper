@@ -35,7 +35,7 @@ class Board < ApplicationRecord
     end
     Board.transaction do
       self.save!
-      Mine.insert_all(mines.map{ |mine| mine[:board_id] = self.id; mine })
+      Mine.insert_all(mines.map{ |mine| mine[:board_id] = self.id; mine }) if mines.any?
     end
     matrix
   end
